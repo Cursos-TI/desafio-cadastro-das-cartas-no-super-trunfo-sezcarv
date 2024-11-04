@@ -13,7 +13,7 @@ int main() {
 
     // Declaração das variáveis para "j" cartas:
     int populacao[j], pturisticos[j]; // Variáveis inteiras para o armazenamento de dados das j cartas
-    float area[j], pib[j]; // Variáveis de ponto flutuante para o armazenamento de dados das j cartas
+    float area[j], pib[j], densdemog[j], pibpercapita[j]; // Variáveis de ponto flutuante para o armazenamento de dados das j cartas
     char estado[j], codcarta[j][3], cidade[j][20]; // Variáveis char e strings para o armazenamento de dados das j cartas
 
     // Loop for para a realização do cadastramento das j cartas
@@ -40,6 +40,10 @@ int main() {
 
         printf("Informe o número de pontos turísticos da cidade: \n"); // Solicita ao usuário que informe o número de pontos turísticos
         scanf("%d", &pturisticos[i]); // Lê o número de pontos turísticos e armazena no array pturisticos[i]
+
+        // Cálculo da densidade populacional e PIB per capita
+        densdemog[i] = (float)populacao[i] / area[i];
+        pibpercapita[i] = (float)pib[i] / populacao[i];
     }
 
     // Impressão dos resultados
@@ -47,8 +51,8 @@ int main() {
     // Loop para apresentar, de forma organizada, os dados das cidades cadastradas
     for (int i = 0; i < j; i++) { 
         printf("\n");
-        printf("Estado: %c\nCódigo da carta: %.3s\nCidade: %s\nPopulação: %d habitantes\nÁrea: %.3f Km²\nPIB: R$ %.2f\nNúmero de pontos turísticos: %d\n",
-               estado[i], codcarta[i], cidade[i], populacao[i], area[i], pib[i], pturisticos[i]);
+        printf("Estado: %c\nCódigo da carta: %.3s\nCidade: %s\nPopulação: %d habitantes\nÁrea: %.3f Km²\nPIB: R$ %.2f\nNúmero de pontos turísticos: %d\nDensidade populacional: %.3f hab./Km²\nPIB per capita: R$ %.2f\n",
+               estado[i], codcarta[i], cidade[i], populacao[i], area[i], pib[i], pturisticos[i], densdemog[i], pibpercapita[i]);
         printf("\n");
     }
 
