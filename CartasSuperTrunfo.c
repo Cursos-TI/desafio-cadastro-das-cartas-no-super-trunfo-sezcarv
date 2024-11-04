@@ -1,44 +1,56 @@
 #include <stdio.h>
+
 /* Atividade */
 
 int main() {
+    int j; // A variável j foi inserida com a finalidade de possibilitar aos usuários a definição do número de cartas que deseja cadastrar.
 
-    // Declaração das variáveis:
-    int populacao, pturisticos; // "população" e "pturisticos" são variáveis que somente assumem valores inteiros
-    float area, pib, densdemog, pibpercapita; // "area", "pib", "densdemog" e "pibpercapita" são variáveis em ponto flutuante (valores numéricos com parte decimal)
-    char estado, codcarta[3], cidade[20]; // A variável "estado" aceita um caractere (de A a H). As variáveis "codcarta" e "cidade" são strings, respectivamente com, no máximo, 3 e 20 caracteres.
+    printf("Desafio Super Trunfo! (Tecle Enter para continuar.)\n"); // Apresenta o nome do jogo e aguarda a tecla enter ser acionada para inicializar o jogo
+    scanf("%*c"); // Lê a entrada anterior e descarta
 
-    printf("Desafio Super Trunfo! (Tecle Enter para continuar.)\n"); // Exibe o nome do desafio, no terminal ou prompt, e aguarda o usuário teclar enter.
-    scanf("%*c"); //Lê a entrada anterior e descarta, inclusive o "Enter", com a finalidade de aguardar a ação do usuário para a exibição da 1º pergunta.
+    printf("Informe o número de cartas a ser cadastrado\n"); // Solicita ao usuário o número de cartas que será cadastrada
+    scanf(" %d", &j); // Lê o número de cartas informado pelo usuário e armazena na variável j
 
-    printf("Informe o Estado (de A a H): \n"); // Exibe no, terminal ou prompt, a 1ª pergunta.
-    scanf(" %c", &estado); // Lê a resposta informada pelo usuário e armazena na variável "estado".
+    // Declaração das variáveis para "j" cartas:
+    int populacao[j], pturisticos[j]; // Variáveis inteiras para o armazenamento de dados das j cartas
+    float area[j], pib[j]; // Variáveis de ponto flutuante para o armazenamento de dados das j cartas
+    char estado[j], codcarta[j][3], cidade[j][20]; // Variáveis char e strings para o armazenamento de dados das j cartas
 
-    printf("Informe o código da carta: \n"); // Exibe, no terminal ou prompt, a 2ª pergunta.
-    scanf("%s", codcarta); // Lê a resposta informada pelo usuário e armazena na variável "codcarta".
+    // Loop for para a realização do cadastramento das j cartas
+    for (int i = 0; i < j; i++) {
+        printf("\n*** Cadastro da %dª carta ***\n", i + 1); // Informa que será realizado o cadastramento das cartas
 
-    printf("Informe o nome da cidade: \n"); // Exibe, no terminal ou prompt, a 3ª pergunta.
-    scanf(" %[^\n]", cidade); // Lê a resposta informada pelo usuário e armazena na variável "cidade".
+        printf("Informe o Estado (de A a H): \n"); // Solicita ao usuário a letra correspondente ao Estado
+        scanf(" %c", &estado[i]); // Lê a letra informada e armazena no array estado[i] 
 
-    printf("Informe a população da cidade: \n"); // Exibe, no terminal ou prompt, a 4ª pergunta.
-    scanf("%d", &populacao); // Lê a resposta informada pelo usuário e armazena na variável "populacao".
+        printf("Informe o código da carta: \n"); // Solicita ao usuário o código da carta
+        scanf("%s", codcarta[i]); // Lê o código informado e armazena no array codcarta[i]
 
-    printf("Informe a área da cidade, em Km²: \n"); // Exibe, no terminal ou prompt, a 5ª pergunta.
-    scanf("%f", &area); // Lê a respota informada pelo usuário e armazena na variável "area".
+        printf("Informe o nome da cidade: \n"); // Solicita ao usuário que informe a cidade
+        scanf(" %[^\n]", cidade[i]); // Lê o nome da cidade e armazena no array cidade[i]
 
-    printf("Informe o PIB da cidade: \n"); // Exibe, no terminal ou prompt, a 6ª pergunta.
-    scanf("%f", &pib); // Lê a respota informada pelo usuário e armazena na variável "pib".
+        printf("Informe a população da cidade: \n"); // Solicita ao usuário que informe a população da cidade
+        scanf("%d", &populacao[i]); // Lê a população e armazena no array populacao[i]
 
-    printf("Informe o número de pontos turísticos da cidade: \n"); //Exibe, no terminal ou prompt, a 7ª pergunta.
-    scanf("%d", &pturisticos); // Lê a respota informada pelo usuário e armazena na variável "pturisticos".
+        printf("Informe a área da cidade, em Km²: \n"); // Solicita ao usuário que informe a área da cidade
+        scanf("%f", &area[i]); // Lê a área e armazena no array area[i]
 
-    densdemog = (float)populacao / area; //De acordo com os valores de "população" e "area", informados pelo usuárioo, calcula a densidade populacional.
-    pibpercapita = (float)pib / populacao; //De acordo com os valores de "PIB" e "população", informados pelo usuárioo, calcula o PIB percapita.
+        printf("Informe o PIB da cidade: \n"); // Solicita ao usuário que informe o PIB da cidade
+        scanf("%f", &pib[i]); // Lê o PIB da cidade e armazena no array pib[i]
 
+        printf("Informe o número de pontos turísticos da cidade: \n"); // Solicita ao usuário que informe o número de pontos turísticos
+        scanf("%d", &pturisticos[i]); // Lê o número de pontos turísticos e armazena no array pturisticos[i]
+    }
 
     // Impressão dos resultados
-    printf("Estado: %c\nCódigo da carta: %.3s\nCidade: %s\nPopulação: %d habitantes\nArea: %.3f Km²\nPIB: R$ %.2f\nNúmero de pontos turísticos: %d\nDensidade populacional: %.3f hab./Km²\nPIB percapita: R$ %.2f\n", estado, codcarta, cidade, populacao, area, pib, pturisticos, densdemog, pibpercapita);
-
+    printf("\n*** Dados das Cartas Cadastrados ***\n"); // Imprime o cabeçalho "Dados das Cartas Cadastradas"
+    // Loop para apresentar, de forma organizada, os dados das cidades cadastradas
+    for (int i = 0; i < j; i++) { 
+        printf("\n");
+        printf("Estado: %c\nCódigo da carta: %.3s\nCidade: %s\nPopulação: %d habitantes\nÁrea: %.3f Km²\nPIB: R$ %.2f\nNúmero de pontos turísticos: %d\n",
+               estado[i], codcarta[i], cidade[i], populacao[i], area[i], pib[i], pturisticos[i]);
+        printf("\n");
+    }
 
     return 0;
 }
